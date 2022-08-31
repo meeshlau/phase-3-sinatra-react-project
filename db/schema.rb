@@ -14,7 +14,6 @@ ActiveRecord::Schema.define(version: 2022_08_30_223542) do
 
   create_table "departments", force: :cascade do |t|
     t.string "name"
-    t.string "manager"
   end
 
   create_table "employees", force: :cascade do |t|
