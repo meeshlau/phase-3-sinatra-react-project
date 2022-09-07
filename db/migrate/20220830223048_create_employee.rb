@@ -4,8 +4,6 @@ class CreateEmployee < ActiveRecord::Migration[6.1]
       t.string :first_name
       t.string :last_name
       t.string :email
-      t.integer :department_id
-      t.string :position
       t.timestamp :created_at
       t.timestamp :updated_at
     end

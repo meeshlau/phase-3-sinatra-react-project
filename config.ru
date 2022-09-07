@@ -15,4 +15,4 @@ use Rack::JSONBodyParser
 
 run ApplicationController
 use EmployeesController
-use DepartmentsController
+use PostsController
