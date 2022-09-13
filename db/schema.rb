@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 2022_09_06_202511) do
   create_table "posts", force: :cascade do |t|
     t.text "message"
     t.integer "employee_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

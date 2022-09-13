@@ -1,14 +1,24 @@
 class PostsController < ApplicationController
 
     get "/posts" do
-        @posts = Post.all
-        @posts.to_json(include: [:employee])
+        post = Post.all
+        post.to_json
     end
 
     post "/posts" do
-        post = Post.create(
-            message: params[:message])
-        post.to_json
+        find_employee = Employee.find_by(
+            first_name: params[:first_name],
+            last_name: params[:last_name]
+        )
+
+        if find_employee
+            post = Post.create(
+                message: params[:message],
+                employee_id: find_employee.id)
+            post.to_json
+        else
+            "Error: Must be an employee to post an update."
+        end
     end
 
     patch "/posts/:id" do

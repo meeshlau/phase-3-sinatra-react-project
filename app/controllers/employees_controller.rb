@@ -1,7 +1,7 @@
 class EmployeesController < ApplicationController
      
-    get "/employees/:id" do
-        employee = Employee.find(params[:id])
+    get "/employees" do
+        employee = Employee.all
         employee.to_json(include: [:posts])
     end
 
@@ -14,7 +14,7 @@ class EmployeesController < ApplicationController
         if employee.save
             employee.to_json
         else
-            "Error!"
+            "Error: Unable to save employee."
         end
     end
 
