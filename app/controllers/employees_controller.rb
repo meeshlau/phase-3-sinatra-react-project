@@ -6,15 +6,18 @@ class EmployeesController < ApplicationController
     end
 
     post "/employees" do
-        employee = Employee.create(
-            first_name: params[:first_name],
-            last_name: params[:last_name],
-            email: params[:email],
+        find_employee = Employee.find_by(
+            email: params[:email]
         )
-        if employee.save
-            employee.to_json
-        else
+
+        if find_employee
             "Error: Unable to save employee."
+        else 
+            post = Employee.create(
+                first_name: params[:first_name],
+                last_name: params[:last_name],
+                email: params[:email])
+            post.to_json
         end
     end
 

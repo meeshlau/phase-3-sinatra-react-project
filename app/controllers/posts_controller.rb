@@ -2,7 +2,7 @@ class PostsController < ApplicationController
 
     get "/posts" do
         post = Post.all
-        post.to_json
+        post.to_json(include: [:employee])
     end
 
     post "/posts" do
@@ -21,7 +21,7 @@ class PostsController < ApplicationController
         end
     end
 
-    patch "/posts/:id" do
+    patch "/posts/:id/edit" do
         post = Post.find(params[:id])
         post.update(
             message: params[:message]
@@ -30,9 +30,14 @@ class PostsController < ApplicationController
     end
 
     delete "/posts/:id" do
-        post = Post.find(params[:id])
-        post.destroy
-        post.to_json
+        find_post = Post.find_by(
+            id: params[:id])
+        if find_post
+            find_post.destroy
+            find_post.to_json
+        else
+            "Error!"
+        end
     end
 
 end
